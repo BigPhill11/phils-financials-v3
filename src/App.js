@@ -30,6 +30,10 @@ function Section({ id, activeTab, children }) {
   return activeTab === id ? <div className="p-4">{children}</div> : null;
 }
 
+// Demo stocks for portfolio tab
+// Move trackedStocks outside the App component to avoid useEffect dependency issues
+const trackedStocks = ["AAPL", "GOOGL"];
+
 function App() {
   const [activeTab, setActiveTab] = useState("market");
   const [marketRecap, setMarketRecap] = useState([]);
@@ -39,9 +43,6 @@ function App() {
   const [portfolio, setPortfolio] = useState(null);
   const [sources, setSources] = useState([]);
   const [gpt, setGpt] = useState({ paragraphs: [], tldr: "" });
-
-  // Demo stocks for portfolio tab
-  const trackedStocks = ["AAPL", "GOOGL"];
 
   useEffect(() => {
     fetch("/.netlify/functions/getMarketRecap")
@@ -72,7 +73,7 @@ function App() {
     fetch("/.netlify/functions/getGPTSummary")
       .then((r) => r.json())
       .then(setGpt);
-  }, [trackedStocks]);
+  }, []);
 
   return (
     <div style={{ fontFamily: "sans-serif", background: "#f5f7fa", minHeight: "100vh" }}>
