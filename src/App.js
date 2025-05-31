@@ -31,8 +31,7 @@ function Section({ id, activeTab, children }) {
 }
 
 // Demo stocks for portfolio tab
-// Move trackedStocks outside the App component to avoid useEffect dependency issues
-const trackedStocks = ["AAPL", "GOOGL"];
+const trackedStocks = Object.freeze(["AAPL", "GOOGL"]);
 
 function App() {
   const [activeTab, setActiveTab] = useState("market");
