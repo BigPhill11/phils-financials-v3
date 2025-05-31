@@ -72,7 +72,7 @@ function App() {
     fetch("/.netlify/functions/getGPTSummary")
       .then((r) => r.json())
       .then(setGpt);
-  }, []);
+  }, [trackedStocks]);
 
   return (
     <div style={{ fontFamily: "sans-serif", background: "#f5f7fa", minHeight: "100vh" }}>
